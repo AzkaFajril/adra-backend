@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const dns = require('dns')
+dns.setServers(['8.8.8.8', '1.1.1.1'])
 
 const connectDb = async() => {
     const uri = process.env.MONGODB_URI
