@@ -20,8 +20,10 @@ app.use(
     })
 )
 
-app.use(express.json({ limit: '30mb' }))
-app.use(express.urlencoded({ extended: true }))
+const bodyLimit = process.env.VERCEL ? '4mb' : '30mb'
+
+app.use(express.json({ limit: bodyLimit }))
+app.use(express.urlencoded({ extended: true, limit: bodyLimit }))
 
 configureCloudinary()
 
@@ -68,7 +70,7 @@ const startServer = async() => {
     }
 }
 
-if (!process.env.VERCEL) {
+if (require.main === module) {
     startServer()
 }
 

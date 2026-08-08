@@ -47,3 +47,21 @@ npm run dev
 
 Send the JWT in the `Authorization: Bearer <token>` header for the protected slide routes. All responses are JSON except the `204` from delete (no body).
 
+## Deploy to Vercel
+
+1. Push this repository to GitHub (`adra-backend`).
+2. Import the repo in [Vercel Dashboard](https://vercel.com/new).
+3. Set **Framework Preset** to `Other`.
+4. Leave **Root Directory** empty (repo root already contains `server.js`).
+5. Add all environment variables from `env.example` in **Project Settings → Environment Variables**.
+6. Deploy, then test:
+   - `https://your-project.vercel.app/health`
+   - `https://your-project.vercel.app/api/slides`
+
+### Vercel notes
+
+- `api/index.js` is the serverless entry point for Vercel.
+- `server.js` is used for local development with `npm run dev`.
+- MongoDB Atlas must allow `0.0.0.0/0` in Network Access.
+- Set `ALLOWED_ORIGINS` to your frontend production URL for CORS.
+
